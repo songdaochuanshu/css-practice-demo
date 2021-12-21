@@ -4,7 +4,7 @@
  * @Author: 松岛川树
  * @Date: 2021-12-21 12:56:45
  * @LastEditors: 松岛川树
- * @LastEditTime: 2021-12-21 14:08:03
+ * @LastEditTime: 2021-12-21 14:33:26
  * @FilePath: \CSS3\src\main.js
  */
 import './style.css'
@@ -28,7 +28,7 @@ dateArr.push('bilibili')
 let ul = document.querySelector('ul') || document.createElement('ul')
 let li = ''
 dateArr.forEach(item => {
-  li += `<li><a href="/${item}/index.html">${item}</a></li>`
+  li += `<li><a href="/css-practice-demo/${item}/index.html">${item}</a></li>`
 });
 ul.innerHTML = li;
 document.body.appendChild(ul)
