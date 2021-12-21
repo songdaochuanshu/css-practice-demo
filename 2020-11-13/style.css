@@ -1,0 +1,166 @@
+:root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #fd79a8;
+    --color3          : #0984e3;
+    --color4          : #00b894;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: var(--background-color);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -200px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : #fff;
+}
+
+/* 改用子元素选择器，方便后面的控制 */
+.menu>ul {
+    list-style: none;
+}
+
+/* 利用伪元素清理浮动 */
+.menu>ul::after {
+    display: block;
+    content: '';
+    clear  : both;
+}
+
+
+.menu>ul>li {
+    position: relative;
+    float   : left;
+    width   : auto;
+}
+
+
+
+.menu>ul>li>a {
+    display: block;
+
+    background-color: var(--color3);
+    color           : #fff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size  : 20px;
+    font-weight: bold;
+
+    line-height: 60px;
+
+    min-width: 60px;
+
+    padding: 0 20px;
+
+    text-decoration: none;
+
+    transition: all .3s ease-in-out;
+
+}
+
+.menu>ul>li:hover>a {
+    background-color: #000;
+}
+
+/* 稍后重写子菜单样式 */
+
+/* 开始写子菜单 */
+
+/* 处理弹出 */
+/* 这里顺便解决上一个视频中的bug */
+/* 子菜单通过透明度隐藏，但是实际还是占用空间，鼠标移入这个空间时，子菜单也会显示 */
+
+.sub {
+    /* 这里一定要采用绝对定位 */
+    position: absolute;
+    /* 这样才能通过100%控制当前层不超过父基层 */
+    width   : 100%;
+    /* 让子菜单高度初始化为0 */
+    height  : 0;
+    /* 超出部分隐藏 */
+    overflow: hidden;
+
+    /* background-color: #F97F51; */
+
+}
+/* 鼠标移入时，调整高度为auto显示子菜单 */
+.menu>ul>li:hover .sub{
+    height: auto;
+}
+
+/* 同时会位移ul 形成弹出效果 */
+.sub>ul {
+    list-style: none;
+
+    /* background-color: #fdcb6e; */
+    /* 让ul初始时移动到.sub的外面 */
+    transform: translateY(-100%);
+    transition: all 0.5s ease;
+}
+
+.menu>ul>li:hover .sub>ul{
+    transform: translateY(0);
+}
+
+/* 下边线 */
+.sub>ul>li {
+    border-bottom: 1px solid #777;
+}
+
+/* 最后一个菜单项取消下边线 */
+.sub>ul>li:last-child {
+    border-bottom: none;
+}
+
+
+/* 菜单项 */
+.sub>ul>li>a {
+    display: block;
+
+    background-color: #333;
+    color           : #fff;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size  : 20px;
+
+    line-height: 30px;
+
+    padding    : 15px 20px;
+
+    text-decoration: none;
+
+    transition: all .3s ease-in-out;
+
+}
+
+.sub>ul>li>a:hover{
+    background-color: #555;
+}

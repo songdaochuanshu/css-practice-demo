@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <!-- 开始 -->
+        <!-- 这是一个小球 -->
+        <!-- 这里自定义变量表示具体的坐标点（像素位置） -->
+        <!-- <div class="ball" style="--x:0;--y:0"></div>
+        <div class="ball" style="--x:1;--y:0"></div>
+        <div class="ball" style="--x:2;--y:0"></div>
+        <div class="ball" style="--x:3;--y:0"></div>
+        <div class="ball" style="--x:4;--y:0"></div>
+        <div class="ball" style="--x:5;--y:0"></div>
+        <div class="ball" style="--x:0;--y:1"></div>
+        <div class="ball" style="--x:1;--y:1"></div>
+        <div class="ball" style="--x:2;--y:1"></div>
+        <div class="ball" style="--x:3;--y:1"></div>
+        <div class="ball" style="--x:4;--y:1"></div>
+        <div class="ball" style="--x:5;--y:1"></div>
+        <div class="ball" style="--x:0;--y:2"></div>
+        <div class="ball" style="--x:1;--y:2"></div>
+        <div class="ball" style="--x:2;--y:2"></div>
+        <div class="ball" style="--x:3;--y:2"></div>
+        <div class="ball" style="--x:4;--y:2"></div>
+        <div class="ball" style="--x:5;--y:2"></div>
+        <div class="ball" style="--x:0;--y:-1"></div>
+        <div class="ball" style="--x:1;--y:-1"></div>
+        <div class="ball" style="--x:2;--y:-1"></div>
+        <div class="ball" style="--x:3;--y:-1"></div>
+        <div class="ball" style="--x:4;--y:-1"></div>
+        <div class="ball" style="--x:5;--y:-1"></div>
+        <div class="ball" style="--x:0;--y:-2"></div>
+        <div class="ball" style="--x:1;--y:-2"></div>
+        <div class="ball" style="--x:2;--y:-2"></div>
+        <div class="ball" style="--x:3;--y:-2"></div>
+        <div class="ball" style="--x:4;--y:-2"></div>
+        <div class="ball" style="--x:5;--y:-2"></div> -->
+
+        <!-- 小球的代码我们全部用代码生成 -->
+    </div>
+    <script>
+        // 先来完成透视角度的控制
+        // 上一个视频中有写过这些代码，没有讲解
+        // 这次重新写一遍
+        // 定义容器
+        let container = document.querySelector('.container');
+
+        // 定义一个颜色列表
+        let color_list = Array(
+            "#ec3e27",
+            "#fd79a8",
+            "#0984e3",
+            "#00b894",
+            "#fdcb6e",
+            "#e056fd",
+            "#F97F51",
+            "#BDC581"
+        )
+
+        // 这里定义一个变量存放整个波浪的半径大小，这我们设置10个小球
+        // 改小一点，方便查看
+        let space_size = 10
+
+        // 坐标偏移量，负值表示相反方向位移
+        // 当前原始坐标为屏幕中心
+        // 我的电脑配置太低了，我怕带不起来直接卡死。
+        let offset_x = -10; // 向中心左侧移动5个球
+        let offset_y = -20; // 向空间深层取余延伸10个小球
+
+        // 循环产生所有小球
+        // X轴从-5至5 一共产生11个，这里最好是对称的，左右个5个
+        // 拼了电脑的老命加到40个，已经卡的要命了
+        for (let x = offset_x; x < 10; x++) {
+            // Y轴从-10至5，这里根据perspective设置，向前延伸的尽量少一些，不要超过这个数值，否则你会看到大大大大的一个圆贴在屏幕上，稍后演示一下
+            // 105的时候就已经发生大于视距的问题了
+            for (let y = offset_y; y < 8; y++) {
+
+                // 定义延迟
+                let delay = 0;
+
+                // 开始计算延迟
+
+                // 将坐标负数，转换为，正数，形成x轴从0开始，Y轴从0开始的第一象限？（坐标轴的右上象限）方便计算
+                let position_x = x - offset_x;
+                let position_y = y - offset_y;
+                // console.log(position_x,position_y);
+
+                // 计算当前坐标点的对应的中心坐标位置
+                // 比如当前为0,0点，对应的中心位置为 10,10，即space_size，space_size坐标，下一个坐标为10,30，
+                // 公式：当前坐标地板除（波浪半径的两倍） 然后乘以（波浪半径的两倍） 在加上波浪半径
+                let center_x = Math.floor(position_x / (space_size * 2)) * (space_size * 2) + space_size;
+                let center_y = Math.floor(position_y / (space_size * 2)) * (space_size * 2) + space_size;
+                // console.log(center_x, center_y);
+
+                // 计算当前点的权重值，权重值，就是当前点的延迟变量
+                // 计算公式：中心点坐标减当前坐标取绝对值
+                let weight_x = Math.abs(center_x - position_x)
+                let weight_y = Math.abs(center_y - position_y)
+
+                // 当前变化有点问题，整个延迟呈现一个正方形，这与我们的权重计算方式有关系，我们需要加以修正
+                // 两个权重的差值，就是我们的延迟修正
+                let weight_sub = Math.abs(weight_x - weight_y);
+
+                // 当前权重（x，y两个权重那个大用哪个）
+                let weight = weight_x; // 默认等于weight_x的权重
+                if (weight_y > weight_x) {
+                    weight = weight_y;
+                }
+
+                // 赋值延迟
+                delay = weight;
+
+                // 特殊点（中心点，延迟为0，会突出，所以修改一下为1）
+                if (delay == 0) {
+                    delay = 1;
+                } else {
+                    // 其他点，减去修正
+                    delay = delay - (weight_sub * 0.4);
+                }
+
+
+                // 定义小球
+                let ball = document.createElement('div');
+                ball.classList.add('ball');
+                // 随机一个颜色
+                let color = color_list[Math.floor(Math.random() * 7)];
+                ball.style = '--x:' + x + ';--y:' + y + ';--delay:' + delay + ';--color:' + color + ';';
+                container.appendChild(ball);
+            }
+
+        }
+
+
+
+        // 可视区域大小
+        let window_width = document.documentElement.clientWidth;
+        let window_height = document.documentElement.clientHeight;
+        // 当前可视区域大小等于容器container元素的大小
+        // console.log(window_width,window_height);
+
+        // 监听鼠标移动事件，获取鼠标位置，计算鼠标在屏幕中的百分比
+        // 将这个百分比赋值给perspectiveOrigin属性
+        // 实现动态切换视角
+        container.addEventListener("mousemove", (e) => {
+            // 鼠标坐标
+            let left = e.clientX;
+            let top = e.clientY;
+            // console.log(left,top);
+            // 计算百分比
+            let left_p = left / window_width * 100;
+            let top_p = top / window_height * 100;
+            // console.log(left_p, top_p);
+            // 赋值
+            container.style.perspectiveOrigin = left_p + "% " + top_p + "%";
+        });
+    </script>
+</body>
+
+</html>

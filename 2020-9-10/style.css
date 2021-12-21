@@ -1,0 +1,145 @@
+:root {
+    --background-color: #2c3e50;
+    --border-color: #7591AD;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #7591AD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+
+/* iconfont 字体图标 */
+
+
+/* 来自iconfont.cn */
+
+@font-face {
+    font-family: "iconfont";
+    src: url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAATkAAsAAAAACVQAAASYAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqGIIU1ATYCJAMQCwoABCAFhG0HNhsVCFGUTU6e7EdCdop5YbBodnSpaNZGOPp/iKB+7HXvvQuiYlCZWEAbFRVF1NZVGFat82hUVT1rVH/5td++eihr3/DokrSe7p34bljzVKmkRIgQGkN52Ux2Ky9KISiFpNseweCoF17wwTHTRdqmozybzSU7cICjBBpY1VdS0exBA5if6Yexy4u8n0C7MQsKe8eXN1CX9E2BuPccA+oJvawgh1ZVc8HJXIq3oElreY3cAuCN9/vxC6xFK0VTpe88ujyyYfdrfKzgvfzvdeIggGA4K9hFVKwASVwX2k+VgviKknY5u2wDaDW+U/gKPyh8rPj/Hwm3Im9F//KoiiCa6fJOhF1PVL5Cix8pFCCLwrcK4QXI0znRin7gP3EKunLEO1+z8BQFsZycmry8hb4SVFKQhxrQELZMmLEsTtMow2AocfiywoR4DeQ4fGJ777bxHX070S02L6auq1Oz9aoFht/l8su04s2SWiHY1UHSruwrjGVFJI1tuuJQGGwb+2qaFjJfMrZyYpIW3eUatqyUHLQ/QQsOrdBZ+wClaUHVfAZjOIJj3QtpFucQr4MVhen5JHK1VVbARRZFN01CtNj6tqYEubgokVAUKYAFExKxmGMFJNlLCTlGQFEKMP0ILRCQS6B3u4JYYngZbP+65Hl7NytQW3Ugx+LwkKk61K6+PjkKl5Bbu3gDIDq6LdTBpLI7QPqEkfrXjZZI2671/oXCVqsW6+9WPz6mJzrXsB61GvlmzKvZv9CFDCC7FpAaxIGc4Lrryrbku2mntYWVLZYrY7rovcBG3aYDSgAR+saDukMg+MGvkDQbXmKOCBMcvizzYJ8iZbixMGNjtmGRUV+3o2qIjJNpUFmjbnpEyZfhre5YOWbz/l8IIUhK19pQoBcG2NEm52C9fWfbjVA5zQoT+3TtHIvBGQvXWKU8Q43OO7nVUo0yn9Odc8xyCEzDw7cGITOQaPyXkUU1UrU8KhFGwRiqplYG6GqXCAy6CLjrQZBRk66NsftIJd/0fNBB01XBdVtMTgTjUYWvOh1+v64MKALljNxNGQSp69KiZp8Jn83GyCviEXK3FYCaVkuI1IGgDQ8UVVxU1s9tYOt1bAMdM92srXQDlM9pmQDT6fbZWGUxwBOAxosEdQo0bmREaQyon5FPv9cqa+9i9bXe5u9Whcc79KXpQLsnbs7/RwSy4Gdqyy+APOREuiFTkqlUZvM86ZkOGC1oN9w0kLvf3xDqofeUDK2GIihajELVagaZ2BVo0mEdmrXaDLVbtsSLOwxgJZFtWPIJIfT6hqLbJ6h6/SAT+wtNhv1Ds96o0O44RtfsMBc3zQMmQ8hG8xk9K4mVaZKmX3pFzn1ocFzkUe+Icy+Eq/aO6dQJxcRD7MkfnDURhYqTCI/BwygME0w58cmSJVckXV92KC76pCUriaBpFyMGQWzI9Ax5LImYcgaLZubnrxDHvZCBK3rK7HcIy3mzo1VLVhogT+Rxo55LmZ974FgjhMLrFJaIoGNoJaERT6C0eJmPWMQSt0M0tW4Z9VNN5UvTK6M7PAXt9J0ZJWpkNClPn4oijs0EAA==') format('woff2');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 28px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* 微信 */
+
+.icon-wx:before {
+    content: "\e76b";
+}
+
+
+/* 推特 */
+
+.icon-tt:before {
+    content: "\e60b";
+}
+
+
+/* 微博 */
+
+.icon-wb:before {
+    content: "\e601";
+}
+
+.pic {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    /* 这里用背景图实现，正常应该用img标签显示图片 */
+    background-image: url("https://ableartcom.jp/wp-content/uploads/2020/12/thumbnail-3.jpg");
+    background-position: center;
+    background-size: cover;
+    /* 这我们做个圆角 */
+    border-radius: 30px;
+    /* 来个阴影效果更好 */
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, .4);
+    overflow: hidden;
+}
+
+h2 {
+    position: absolute;
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFF;
+    top: 40px;
+    left: 30px;
+    text-shadow: rgba(0, 0, 0, .4) 2px 2px 2px;
+    transition: 0.5s;
+}
+
+.share {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-right: 30px;
+    top: 100%;
+    /* 通过调整背景色透明度让背景透明 */
+    background-color: rgba(255, 255, 255, .85);
+    /* 这会让整个层和内部元素全部透明 */
+    /* opacity: 0.85; */
+    /* flex 布局 让图标靠右上角 */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    /* 让旋转的圆心点在左上角 */
+    transform-origin: left top;
+    transition: 0.5s;
+}
+
+.share .icon {
+    margin-top: 20px;
+    margin-right: 20px;
+    color: var(--background-color);
+    /* 初始一个旋转角度，让图标产生旋转效果 */
+    transform: rotate(-180deg);
+    transition: 0.5s;
+}
+
+.share .icon:hover {
+    color: #fd79a8;
+}
+
+.pic:hover .share {
+    /* 倾斜-15度 */
+    transform: rotate(-15deg) translateY(-14px);
+    /* 增加个阴影 */
+    box-shadow: -10px -10px 100px #000;
+}
+
+.pic:hover .icon {
+    transform: rotate(18deg);
+}
+
+.pic:hover h2 {
+    transform: translateY(-14px);
+}

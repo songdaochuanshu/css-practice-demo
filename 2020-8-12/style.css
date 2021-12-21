@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 布局方式改为列模式 */
+    flex-direction: column;
+}
+
+.logo {
+    /* 向上偏移100个像素 */
+    margin-top: -100px;
+    /* 增加一个渐显动画 */
+    /* 动画名称为show_logo */
+    /* 持续时间2秒 */
+    /* 动画线性结束放慢 */
+    /* 延迟时间为0秒 */
+    /* 动画循环执行1次 */
+    /* 结束停止在最终帧 */
+    /* 统一使用show动画 */
+    animation: show 2s ease-out 0s 1 forwards;
+}
+
+/* 定义动画 从开始到结束透明度从0到1 */
+/* 统一使用一个动画 */
+/* @keyframes show_logo {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+} */
+
+h1 {
+    position: relative;
+    font-size: 100px;
+    color: #544E58;
+    /* 默认状态为透明度0，不显示 */
+    opacity: 0;
+    /* 增加动画，显示名字 */
+    /* 动画名称show_name */
+    /* 持续2秒 */
+    /* 线性开始结束放慢 */
+    /* 延迟0.5秒 */
+    /* 执行1次 */
+    /* 结束时停在最后一帧 */
+    /* 统一使用show动画 */
+    animation: show 2s ease-in-out 0.5s 1 forwards;
+}
+
+/* 创建动画透明度从开始0到结束1  */
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+h1::before {
+    position: absolute;
+    /* 这里必须是Unicode编码 */
+    /* 注意：转换完毕去掉\后面的U */
+    content: '\7f16\8bd1\4e2d\68a6\89c1\672a\6765';
+    /* 颜色改为透明让背景色显示出来 */
+    color: transparent;
+    /* 使用linear-gradient函数生成一个渐变“图片”做背景 */
+    /* 渐变颜色随便个人喜好 */
+    background-image: linear-gradient(to right, #bed742, #f8aba6, #585eaa, #ed1941, #7fb80e, #f26522, #ffc20e, #7c8577, #009ad6, #65c294, #f47920, #f15b6c, #2e3a1f);
+    /* 这个谷歌浏览器不起作用 */
+    background-clip: text;
+    /* 谷歌浏览器适配 */
+    -webkit-background-clip: text;
+    /* 制作一个斜矩形遮罩 */
+    /* 使用polygon方法 */
+    /* 矩形需要定义四个角的坐标，顺时针方向定义 */
+    /* 分别为左上、右上、右下、左下 */
+    /* 位置以百分比为单位 */
+    /* 因为要做动画，所有先将遮罩层移除当前可视区域 */
+    clip-path: polygon(-20% 0%, 0% 0%, -10% 100%, -30% 100%);
+    /* 增加动画 */
+    /* 动画名称light */
+    /* 持续时间2秒 */
+    /* 延迟0秒执行 */
+    /* 直接方式循环 */
+    /* 延迟2秒执行等待显示 */
+    animation: light 2s 2s infinite;
+}
+
+/* 初始与结束保持一致 */
+
+/* 中间为最右侧 */
+
+@keyframes light {
+    0% {
+        clip-path: polygon(-20% 0%, 0% 0%, -10% 100%, -30% 100%);
+    }
+    50% {
+        clip-path: polygon(100% 0%, 120% 0%, 110% 100%, 90% 100%);
+    }
+    100% {
+        clip-path: polygon(-20% 0%, 0% 0%, -10% 100%, -30% 100%);
+    }
+}
