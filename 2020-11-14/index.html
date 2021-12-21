@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <div class="bt-close icon1">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="bt-close icon2">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="bt-close icon3">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="bt-close icon4">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <script>
+        // 获取所有按钮
+        let bts = document.querySelectorAll('.bt-close');
+
+        // 循环所有按钮
+        for (const key in bts) {
+            if (bts.hasOwnProperty(key)) {
+                const bt = bts[key];
+                // 增加点击事件监听
+                bt.addEventListener('click', () => {
+                    // 切换打开样式
+                    bt.classList.toggle('open');
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

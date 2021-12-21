@@ -1,0 +1,94 @@
+:root {
+    --background-color: #000;
+    --border-color: #7591AD;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -250px);
+    font-size: 5vw;
+    font-weight: bold;
+    color: #fff;
+    z-index: 100;
+    /* 取消事件响应 */
+    pointer-events: none;
+    opacity: 0.2;
+
+}
+
+.container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    /* 排版 */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    /* 换行 */
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.dot{
+    position: relative;
+    /* 闪光点大小 */
+    width: 20px;
+    height: 20px;
+    /* background-color: #fff; */
+}
+
+.dot::before{
+    position: absolute;
+    content: '';
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: #222222;
+    /* 这里时间越长，闪光点闪光停留越长 */
+    transition: 2s ease-in-out;
+}
+
+.dot:hover::before{
+    /* 这里很关键，让鼠标移入时立即执行变化 */
+    /* 但是移出时，却是2秒中的执行时长 */
+    /* 这就形成了快速闪出，慢慢消失的效果 */
+    transition: 0s ease-in-out;
+    /* 这里使用变量控制颜色 */
+    background-color: var(--color);
+}

@@ -1,0 +1,92 @@
+:root {
+    --background-color: #2c3e50;
+    --border-color: #7591AD;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+    color: #FFF;
+}
+
+/* 开始编写CSS */
+
+.container {
+    position: relative;
+    height: 400px;
+    width: 290px;
+    /* 开启3d */
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /* background-color: #0984e3; */
+    /* 背景居中 */
+    background-size: cover;
+    background-position: center;
+    /* 内容居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 开启3d */
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    /* 3D模式下隐藏所有翻转的信息 */
+    backface-visibility: hidden;
+    /* 临时 */
+    /* transform: rotateY(60deg); */
+    transition: transform .7s ease-in-out;
+}
+
+.front {
+    /* 增加一个渐变背景，暗化背景图，让文字更加清晰 */
+    background-image: linear-gradient(to right, #00000070,#00000070), url(bg1.jpg);
+}
+
+.back {
+    background-image: linear-gradient(to right, #00000070,#00000070), url(bg2.jpg);
+    /* 翻转 翻转后，默认隐藏 */
+    transform: rotateY(180deg);
+}
+
+.contents{
+    /* 形成文字与背景分离 */
+    transform: translateZ(60px);
+}
+
+.container:hover .front{
+    /* 前面的翻转到后面，并且隐藏掉 */
+    transform: rotateY(-180deg);
+}
+.container:hover .back{
+    /* 后面的图层翻转到前端 */
+    transform: rotateY(0deg);
+}

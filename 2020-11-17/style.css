@@ -1,0 +1,153 @@
+:root {
+    --background-color: #024477;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #fd79a8;
+    --color3          : #0984e3;
+    --color4          : #00b894;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: var(--background-color);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -300px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : rgb(33, 154, 253);
+}
+
+/* 导入字体 */
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+
+.container {}
+
+.dis {
+    position   : relative;
+    font-size  : 12vmin;
+    font-family: Staatliches, sans-serif;
+    color      : #fff;
+}
+
+.row {
+    display            : block;
+    top                : 0;
+    left               : 0;
+    /* 不可选中 */
+    user-select        : none;
+    -webkit-user-select: none;
+    -moz-user-select   : none;
+
+}
+
+/* 这里不要增加绝对定位，如果增加会导致字体换行 */
+/* 实际上整个文本空间就是有第一个元素大小决定的 */
+/* 这里就是通过clip-path裁切不同层，然后通过拼合把文本显示出来 */
+.row:nth-child(1) {
+    /* background-color: var(--color1); */
+    clip-path: polygon(0% 75%, 100% 75%, 100% 100%, 0% 100%);
+
+}
+
+.row:nth-child(2) {
+    /* background-color: var(--color2); */
+    clip-path: polygon(0% 50%, 100% 50%, 100% 75.5%, 0% 75.5%);
+    position : absolute;
+}
+
+.row:nth-child(3) {
+    /* background-color: var(--color3); */
+    clip-path: polygon(0% 25%, 100% 25%, 100% 50.5%, 0% 50.5%);
+    position : absolute;
+}
+
+.row:nth-child(4) {
+    /* background-color: var(--color4); */
+    clip-path: polygon(0% 0%, 100% -10%, 100% 35.5%, 0% 25.5%);
+    position : absolute;
+}
+
+.row:nth-child(5) {
+    /* background-color: var(--color5); */
+    clip-path: polygon(0% -25%, 100% -45%, 100% -9.5%, 0% 0.5%);
+    position : absolute;
+}
+
+.row:nth-child(6) {
+    /* background-color: var(--color6); */
+    clip-path: polygon(0% -50%, 100% -85%, 100% -44.4%, 0% -24.5%);
+    position : absolute;
+}
+
+
+.dis .text {
+    display         : block;
+    transform-origin: bottom left;
+    /* 循环往返执行 */
+    /* 正向、逆向轮流执行 */
+    animation: in 2.5s ease-in-out infinite alternate;
+}
+
+/* 定义初始化样式 */
+
+.dis .row:nth-child(1) .text {
+    transform: translateY(-0.1em);
+}
+
+.dis .row:nth-child(2) .text {
+    transform: translateY(-0.3em) scaleY(1.1);
+}
+
+.dis .row:nth-child(3) .text {
+    transform: translateY(-0.5em) scaleY(1.2) rotate(-1deg);
+}
+
+.dis .row:nth-child(4) .text {
+    transform: translateY(-0.7em) scaleY(1.3) rotate(-2deg);
+}
+
+.dis .row:nth-child(5) .text {
+    transform: translateY(-0.9em) scaleY(1.4) rotate(-3deg);
+}
+
+.dis .row:nth-child(6) .text {
+    transform: translateY(-1.1em) scaleY(1.5) rotate(-4deg);
+}
+
+/* 还原动画 */
+/* 把所有变化全部还原 */
+@keyframes in {
+
+    60%,
+    100% {
+        transform: translateX(0em);
+    }
+}

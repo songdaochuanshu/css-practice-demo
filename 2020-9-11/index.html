@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="clock_box">
+        <div class="clock">
+            <p id="time"></p>
+        </div>
+    </div>
+    <script>
+        // 获取页面id=time的元素（P元素<p id="time">12:12:12 AM</p>）
+        var time = document.querySelector("#time");
+
+        // 定义函数传入time元素
+        function up(time_el) {
+            // 获取当前时间
+            let date = new Date();
+            // 获取时分秒
+            let h = date.getHours();
+            let m = date.getMinutes();
+            let s = date.getSeconds();
+            // 上午与下午
+            let day_night = "AM";
+
+            // 计算上午与下午
+            if (h > 12) {
+                h = h - 12;
+                day_night = "PM";
+            }
+
+            // 如果时间小于10则前面补充0
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+
+            // 拼接时间并且赋值给time元素的文本中，从而显示
+            time_el.textContent = h + ":" + m + ":" + s + " " + day_night;
+
+        }
+
+        // 定时器，每秒执行一次实现更新
+        setInterval(() => {
+            up(time);
+        }, 1000);
+    </script>
+</body>
+
+</html>

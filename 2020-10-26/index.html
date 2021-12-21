@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <section class="images">
+            <div class="image" style="--i:0">
+                <img src="1.jpg">
+            </div>
+            <div class="image" style="--i:1">
+                <img src="2.jpg">
+            </div>
+            <div class="image" style="--i:2">
+                <img src="3.jpg">
+            </div>
+            <div class="image" style="--i:3">
+                <img src="4.jpg">
+            </div>
+        </section>
+
+        <section class="select_list">
+            <div data-id="0" class="select check" style="--i:0">1</div>
+            <div data-id="1" class="select" style="--i:1">2</div>
+            <div data-id="2" class="select" style="--i:2">3</div>
+            <div data-id="3" class="select" style="--i:3">4</div>
+        </section>
+    </div>
+
+    <script>
+        // 通过js控制当前选择
+        let selects = document.querySelectorAll('.select');
+        // console.log(selects);
+
+        // 找到图片组合
+        let images = document.querySelector(".images");
+
+        // 循环绑定点击事件
+        selects.forEach((slt) => {
+            slt.addEventListener('click', (e) => {
+                // 获取id
+                let index = e.target.dataset.id;
+
+                // 默认角度
+                let deg = 90;
+                deg = deg * index;
+
+                // 控制样式变化
+                images.style.transform = "scale(0.5) rotateX(" + deg + "deg)";
+
+                // 找到原select对象、并移出样式
+                let slt_orgin = document.querySelector('.check');
+                slt_orgin.classList.remove('check');
+                // 当前select对象增加样式
+                slt.classList.add('check');
+
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

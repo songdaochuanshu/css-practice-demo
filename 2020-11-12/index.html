@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        B站 关注 松岛川树
+    </div>
+    <div class="container">
+        <h1>
+            <span style="--i:1" class="big">D</span>
+            <span style="--i:2">r</span>
+            <span style="--i:3">e</span>
+            <span style="--i:4">a</span>
+            <span style="--i:5">m</span>
+            <span style="--i:6" class="big">B</span>
+            <span style="--i:7">i</span>
+            <span style="--i:8">g</span>
+        </h1>
+        <h2>
+            <span style="--i:1" class="big">S</span>
+            <span style="--i:2">t</span>
+            <span style="--i:3">a</span>
+            <span style="--i:4">r</span>
+            <span style="--i:5">t</span>
+            <span style="--i:6" class="big">S</span>
+            <span style="--i:7">m</span>
+            <span style="--i:8">a</span>
+            <span style="--i:9">l</span>
+            <span style="--i:10">l</span>
+        </h2>
+    </div>
+
+    <script>
+        // 所有span标签
+        let spans = document.getElementsByTagName('span');
+
+        // 页面加载时
+        window.addEventListener('load', () => {
+            // 循环所有的span
+            for (let index = 0; index < spans.length; index++) {
+                const element = spans[index];
+                // 增加in样式属性
+                element.classList += ' in';
+            }
+
+        });
+    </script>
+</body>
+
+</html>

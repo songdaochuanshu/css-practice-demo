@@ -1,0 +1,338 @@
+/* 基本样式表 */
+
+:root {
+    --background-color: #2c3e50;
+    --border-color: #7591AD;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+    background: linear-gradient(to left top, #373B44, #4286f4);
+}
+
+.container {
+    /* 基本框架与body同宽同高 */
+    width: 100vw;
+    height: 100vh;
+    /* 使用flex布局实现内容上下左右居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 
+    card元素需要做3D的动画所有需要开启3D视图模式
+    视距为2000px，视距（这个名字可能不准确）越大透视越小，视距越小透视越大（变形也越严重）。
+    */
+    perspective: 2000px;
+    transform-style: preserve-3d;
+}
+
+/* card层仅作为背景使用，图片级元素均为其内部的元素 */
+
+.container .card {
+    position: relative;
+    width: 400px;
+    height: 550px;
+    background-color: #000;
+    border-radius: 20px;
+    /* 使用flex布局实现内容上下左右居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 动画相关配置 */
+    transition: 0.5s;
+    /* 开始3D视图 */
+    perspective: 2000px;
+    transform-style: preserve-3d;
+}
+
+/* 图片层采用背景图的形式加载图片 */
+
+.container .pic {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /* 背景图，定位居中，大小采用cover，即高度、宽度两者小的占满，大的部分裁切 */
+    background-image: url(bg.jpg);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    /* 动画相关配置 */
+    transition: 1s;
+}
+
+/* 文字部分看不清楚，我们增加一个黑色半透明层，加深背景颜色 */
+
+.container .pic::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35);
+    /* 动画相关配置 */
+    transition: 1s;
+}
+
+/* 文字部分要单独定义大小，以及位置，还需要再定义3D模式下的Z轴位置 */
+
+h2, h3, h4 {
+    position: absolute;
+    top: 100px;
+    color: #fff;
+    /*大写*/
+    text-transform: uppercase;
+    /* 动画相关配置 */
+    transition: 1s;
+}
+
+h2 {
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+h4 {
+    font-size: 30px;
+    margin-top: 300px;
+    opacity: 0.7;
+}
+
+/* 开始定义active样式 */
+
+.container.active .card {
+    /* 实现x轴旋转实现平铺样式 */
+    /* 实现Y轴位移让动画不至于太生硬 增加滑动感觉 */
+    transform: rotateX(60deg) translateY(150px);
+    /* 背景增加投影效果 */
+    box-shadow: 0 50px 50px 0 rgba(0, 0, 0, 0.5);
+}
+
+.container.active .pic {
+    /* 让背景图沿Z轴向上位移20px，与card实现分离 */
+    /* 刚才card没有开启3D视图，所有没有效果 */
+    transform: translateZ(20px);
+}
+
+.container.active .pic::before {
+    /* 图片遮罩加深颜色 */
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 文字部分也要增加一些位置上的移动让动画看起来不生硬 */
+
+/* 文字部分需要隐藏顶部的STEPS和This WEEK */
+
+.container.active h2 {
+    opacity: 0;
+    transform: translateZ(40px) translateY(-80px);
+}
+
+.container.active h3 {
+    opacity: 0;
+    transform: translateZ(40px) translateY(-60px);
+}
+
+.container.active h4 {
+    opacity: 1;
+    transform: translateZ(40px) translateY(40px);
+}
+
+/* 开始制作柱状图 */
+
+.container .chart {
+    position: absolute;
+    width: 65%;
+    height: 60px;
+    top: 100px;
+    margin-top: 120px;
+    /* background-color: var(--color1); */
+    /* 位置要高于等于背景图的位移 */
+    transform: translateZ(21px);
+    /* 使用flex布局实现内容上下左右居中 */
+    display: flex;
+    align-items: center;
+    /* 开始3D视图 */
+    perspective: 2000px;
+    transform-style: preserve-3d;
+}
+
+/* 因为我们看到的柱状体有三个面，所有我们可以使用
+::after
+::before
+分别实现另外两个面 */
+
+.container .bar {
+    position: absolute;
+    /* 默认状态下高度为0 */
+    width: 0;
+    height: 20px;
+    background-color: #FFF;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
+    /* margin-right: 20px; */
+    /* 开始3D视图 让after和before显示 */
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    /* 基点在左侧 垂直变化时，不至于跑到背景底部 */
+    transform-origin: left;
+    /* 开始临时旋转查看效果 */
+    /* Y轴旋转-90度让柱状体直立起来 */
+    /* X轴旋转-45度让三个面面向前方 */
+    /* transform: rotateY(-90deg) rotateX(-45deg); */
+    /* 柱状图图初始透明度为0 ??? 不能为透明，否则不显示了 */
+    /* opacity: 0; */
+    /* 动画相关配置 */
+    transition: 1s;
+}
+
+.container .bar:nth-child(1) {
+    transform: translateX(0px) rotateY(-90deg) rotateX(-45deg);
+}
+
+.container .bar:nth-child(2) {
+    transform: translateX(40px) rotateY(-90deg) rotateX(-45deg);
+}
+
+.container .bar:nth-child(3) {
+    transform: translateX(80px) rotateY(-90deg) rotateX(-45deg);
+}
+
+.container .bar:nth-child(4) {
+    transform: translateX(120px) rotateY(-90deg) rotateX(-45deg);
+}
+
+.container .bar:nth-child(5) {
+    transform: translateX(160px) rotateY(-90deg) rotateX(-45deg);
+}
+
+.container .bar:nth-child(6) {
+    transform: translateX(200px) rotateY(-90deg) rotateX(-45deg);
+}
+
+.container .bar:nth-child(7) {
+    transform: translateX(240px) rotateY(-90deg) rotateX(-45deg);
+}
+
+/* 实现柱状体的与正面（文字面）相同的一面，角度90度 */
+
+.container .bar::after {
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #FFF;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
+    /* 开始旋转
+    以顶部为基点，X轴旋转负90度形成直角 */
+    transform-origin: top;
+    /* 旋转后暂时看不见了 */
+    transform: rotateX(-90deg);
+    /* 柱状图图初始透明度为0 */
+    opacity: 0;
+    /* 动画相关配置 */
+    transition: 1s;
+}
+
+/* 实现柱状体两头的面，我们把这个放在右侧，旋转后就是柱状体的顶部 */
+
+.container .bar::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 100%;
+    width: 20px;
+    height: 20px;
+    background-color: #FFF;
+    background-image: linear-gradient(to left top, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.05));
+    /* 以左变现为基点，Y轴旋转90度直角 */
+    transform-origin: left;
+    /* 旋转后也看不见了 */
+    transform: rotateY(90deg);
+    /* 柱状图图初始透明度为0
+    opacity: 0; */
+    /* 动画相关配置 */
+    transition: 1s;
+}
+
+/* 处理柱状体文字及背景 */
+
+.container .bar {
+    text-align: right;
+}
+
+.container .bar span {
+    padding-right: 10px;
+    font-size: 12px;
+    color: #555;
+    opacity: 0;
+}
+
+/* 柱状图整体Z轴移动40px超过背景图的20px不至于发生遮挡 */
+
+.container.active .chart {
+    transform: translateZ(20px);
+    /* background-color: #BDC581; */
+}
+
+/* 开始做动画效果，高度发生变化 */
+
+.container.active .bar:nth-child(1) {
+    width: 200px;
+}
+
+.container.active .bar:nth-child(2) {
+    width: 100px;
+}
+
+.container.active .bar:nth-child(3) {
+    width: 150px;
+}
+
+.container.active .bar:nth-child(4) {
+    width: 240px;
+}
+
+.container.active .bar:nth-child(5) {
+    width: 70px;
+}
+
+.container.active .bar:nth-child(6) {
+    width: 70px;
+}
+
+.container.active .bar:nth-child(7) {
+    width: 100px;
+}
+
+.container.active .bar::after {
+    opacity: 1;
+}
+
+.container.active .bar span {
+    opacity: 1;
+}
