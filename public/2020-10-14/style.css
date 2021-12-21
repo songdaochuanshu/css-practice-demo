@@ -1,0 +1,127 @@
+:root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #fd79a8;
+    --color3          : #0984e3;
+    --color4          : #00b894;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: var(--background-color);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -200px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : #fff;
+}
+
+/* .container {} */
+
+ul {
+    list-style         : none;
+    width              : 500px;
+    /* background-color: #0984e3; */
+}
+
+li {
+    height             : 100px;
+    margin-bottom      : 20px;
+    /* background-color: #BDC581; */
+    display            : flex;
+    justify-content    : flex-start;
+    align-items        : center;
+}
+
+.cylinder {
+    position           : relative;
+    width              : 50px;
+    height             : 100px;
+    /* background-color: #f18912; */
+    transition: width 0.5s;
+}
+
+.cylinder::before {
+    position           : absolute;
+    content            : '';
+    width              : 100%;
+    height             : 100px;
+    /* background-color: #bf0dc5; */
+    border-radius      : 40px/100px;
+    background-image   : linear-gradient(to bottom, #97a7a9, #b8cbcd);
+    box-shadow: 0 10px 20px #00000050;
+
+}
+
+.cylinder::after {
+    position        : absolute;
+    content         : '';
+    width           : 40px;
+    height          : 100px;
+    border-radius   : 40px/100px;
+    background-color: #d5eef180;
+    right           : 0;
+}
+
+/* 鼠标移入长度发生变化，同时颜色也发生变化 */
+li.iphone:hover .cylinder::before {
+    background-image: linear-gradient(to bottom, #1a6c90, #14506b);
+}
+
+li.iphone:hover .cylinder::after {
+    background-color: #1f81ac;
+}
+
+li.macbook:hover .cylinder::before {
+    background-image: linear-gradient(to bottom, #9d0032, #7a0027);
+}
+
+li.macbook:hover .cylinder::after {
+    background-color: #bc003c;
+}
+
+
+li.iphone:hover .cylinder{
+    width: 300px;
+}
+li.macbook:hover .cylinder{
+    width: 400px;
+}
+
+/* 图片 */
+
+.image{
+    position: relative;
+    height: 60px;
+    margin-left: -30px;
+}
+.image img{
+    height: 60px;
+}

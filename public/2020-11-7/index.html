@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="iconfont.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <div class="icon">
+            <i class="iconfont icon-dianzan"></i>
+            <div class="shine">
+                <!-- 这里是放射用的线段 -->
+                <span style="--i:1"></span>
+                <span style="--i:2"></span>
+                <span style="--i:3"></span>
+                <span style="--i:4"></span>
+                <span style="--i:5"></span>
+                <span style="--i:6"></span>
+                <span style="--i:7"></span>
+                <span style="--i:8"></span>
+                <span style="--i:9"></span>
+                <span style="--i:10"></span>
+                <span style="--i:11"></span>
+                <span style="--i:12"></span>
+                <span style="--i:13"></span>
+                <span style="--i:14"></span>
+                <span style="--i:15"></span>
+                <span style="--i:16"></span>
+            </div>
+        </div>
+        <div class="icon">
+            <i class="iconfont icon-toubi"></i>
+            <div class="shine">
+                <span style="--i:1"></span>
+                <span style="--i:2"></span>
+                <span style="--i:3"></span>
+                <span style="--i:4"></span>
+                <span style="--i:5"></span>
+                <span style="--i:6"></span>
+                <span style="--i:7"></span>
+                <span style="--i:8"></span>
+                <span style="--i:9"></span>
+                <span style="--i:10"></span>
+                <span style="--i:11"></span>
+                <span style="--i:12"></span>
+                <span style="--i:13"></span>
+                <span style="--i:14"></span>
+                <span style="--i:15"></span>
+                <span style="--i:16"></span>
+            </div>
+        </div>
+        <div class="icon">
+            <i class="iconfont icon-shoucang"></i>
+            <div class="shine">
+                <span style="--i:1"></span>
+                <span style="--i:2"></span>
+                <span style="--i:3"></span>
+                <span style="--i:4"></span>
+                <span style="--i:5"></span>
+                <span style="--i:6"></span>
+                <span style="--i:7"></span>
+                <span style="--i:8"></span>
+                <span style="--i:9"></span>
+                <span style="--i:10"></span>
+                <span style="--i:11"></span>
+                <span style="--i:12"></span>
+                <span style="--i:13"></span>
+                <span style="--i:14"></span>
+                <span style="--i:15"></span>
+                <span style="--i:16"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 开始写js脚本代码
+
+        // 定义两个计时器，分别控制按住过程中，另一个控制按住超过3秒钟
+        let timer_start = null;
+        let timer_end = null;
+
+        // 是否长按
+        let is_long = true;
+        // 鼠标按下的时间，统计计算鼠标弹起时的时间差来判断时长安还是点击
+        let mouse_down_start_time = 0;
+        // 鼠标弹起时的时间
+        let mouse_up_end_time = 0;
+
+        // 找到所有的icon
+        let icons = document.querySelectorAll('.icon');
+
+        // 增加绑定事件
+        icons.forEach((icon, index) => {
+            // 增加点击事件
+            icon.addEventListener('click', () => {
+                // 点击时增加样式点亮
+                // 这里我们切换样式
+                if (index == 0) {
+                    // 第一个图标时不是长按时才会点亮
+                    // 快速点击有效，长按失效
+                    if (!is_long) {
+                        icon.classList.toggle('light');
+                    }
+                } else {
+                    icon.classList.toggle('light');
+                }
+            });
+        })
+
+        // 第一个图标增加按下事件
+        icons[0].addEventListener('mousedown', () => {
+            // 在这里我们需要控制一下放置于鼠标点击事件冲突
+            mouse_down_start_time = new Date().getTime();
+
+            // 鼠标按下 触发第一个计时器.5s后执行
+            timer_start = setTimeout(() => {
+                // 增加样式
+                icons.forEach((icon, index) => {
+                    // 第一个不同
+                    // 第一个增加抖动样式
+                    // 其他增加加载样式
+                    if (index == 0) {
+                        icon.classList.add('shake');
+                    } else {
+                        icon.classList.add('loading');
+                    }
+                });
+
+            }, 500);
+
+            // 移除加载样式增加爆炸和点亮样式
+            // 这里延迟3.5s等待加载动画完成
+            timer_end = setTimeout(() => {
+                icons.forEach((icon, index) => {
+                    // 样式移除
+                    icon.classList.remove('shake');
+                    icon.classList.remove('loading');
+                    // 增加爆炸效果和完成之后的点亮
+                    icon.classList.add('bang');
+                    icon.classList.add("light");
+                });
+
+                // 在增加一个计时器，让bang动画执行完成时清理掉样式
+                setTimeout(() => {
+                    icons.forEach((icon, index) => {
+                        icon.classList.remove('bang');
+                    });
+                }, 1000);
+
+
+            }, 3500);
+
+
+        });
+        // 第一个图标增加弹起事件
+        icons[0].addEventListener('mouseup', () => {
+            // 在这里我们需要控制一下放置于鼠标点击事件冲突
+            mouse_up_end_time = new Date().getTime();
+            // 时间差超过300毫秒则为长按
+            if (mouse_up_end_time - mouse_down_start_time > 300) {
+                is_long = true;
+            } else {
+                is_long = false;
+            }
+
+            //基本样式有了，我们需要通过判断时长，让没有完成3s以上的加载不触发完成和放射效果
+            if (timer_start) {
+                clearTimeout(timer_start);
+            }
+            // 先把样式移除，然后把计时器取消
+            // 300-3500毫秒之间时需要结束加载动画，然后取消掉完成样式计时器的
+            if (mouse_up_end_time - mouse_down_start_time < 3500) {
+                icons.forEach((icon, index) => {
+                    icon.classList.remove('shake');
+                    icon.classList.remove('loading');
+                });
+
+                if (timer_end) {
+                    clearTimeout(timer_end);
+                    timer_end = null;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

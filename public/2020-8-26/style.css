@@ -1,0 +1,81 @@
+:root {
+    --background-color: #2c3e50;
+    --color1: #7591AD;
+    --color2: #9729ad;
+    --color3: #db2159;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    width: 680px;
+    background-color: var(--color1);
+}
+
+.item {
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+    float: left;
+    perspective: 4000px;
+}
+
+.item a {
+    display: block;
+    height: 100px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5em;
+    /* 开启3d */
+    transform-style: preserve-3d;
+    /* 通过变换角度可以发现刚才的夹角好像一个打开的笔记本电脑 */
+    /* transform: rotateX(10deg) rotateY(10deg) translateZ(50px); */
+    /* 增加z轴上的位移主要是为了让hover旋转式沿着夹角形成的 */
+    /* 虚拟立方体中心轴旋转而不是当前cn元素的这一面的中心 */
+    transform: translateZ(50px);
+    transition: 0.5s;
+}
+
+.item a p {
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.item a p.cn {
+    background-color: var(--color2);
+}
+
+.item a p.en {
+    background-color: var(--color3);
+    /* en元素沿顶端x轴逆向旋转90度
+    形成于cn元素垂直的夹角，类似于形成一个缺两面的正方体
+    */
+    transform: rotateX(-90deg);
+    transform-origin: top;
+}
+
+.item a:hover{
+    /* 当鼠标移动到a元素时旋转，沿X轴旋转顺时针90度 */
+    /* 因为当前旋转基点在夹角形成的虚拟正方体的中心，所有看起来就像旋转
+    立方体的两个面一样 */
+    /* 出现偏移问题是因为顺序原因，具体的后续查了下文档发现，变换动作的
+    顺序会影响最终呈现的效果 */
+    transform: rotateX(90deg) translateZ(50px) ;
+}

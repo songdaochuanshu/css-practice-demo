@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <!-- 加载loadding时才能旋转，方便后续控制 -->
+        <div class="loader loadding"></div>
+    </div>
+    <script>
+        // 获得loader对象
+        let loader = document.querySelector('.loader');
+
+        // 页面增加事件监听，点击时停止旋转
+        document.body.addEventListener('click', () => {
+            // 移除loadding样式停止旋转
+            loader.classList.remove('loadding');
+            // 增加check样式让对号显示
+            loader.classList.add('check');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+:root {
+    --background-color: #000;
+    --border-color: #272727;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    /* background-color: var(--border-color); */
+    /* loader居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    position: relative;
+    /* 尺寸大小按照外边框计算，包含外边框和内边距 */
+    box-sizing: border-box;
+    width: 120px;
+    height: 120px;
+    /* background-color: #0984e3; */
+    border: 10px solid var(--border-color);
+    border-radius: 100%;
+}
+
+.loader::after {
+    position: absolute;
+    content: '';
+    box-sizing: border-box;
+    /* 尺寸要不能按照100%，貌似还是以content-size计算的 */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 10px solid var(--color2);
+    /* 透明背景 */
+    background-color: transparent;
+    /* background-color: var(--color4); */
+    /* 以下三句让中心圆居中 */
+    top: 50%;
+    left: 50%;
+    /* 需要旋转45度，从正中心顶部开始展示 */
+    transform: translate(-50%, -50%) rotate(45deg);
+    /* clip已经不建议使用了，建议clip-path */
+    /* polygon绘制多边形，动态显示出整个圆形，稍后演示，默认为不显示 */
+    clip-path: polygon(
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        0% 0%,
+        50% 50%
+    );
+
+}
+
+.loader:hover::after{
+    animation: animate 3s linear 1 both;
+}
+
+/* 这一段就不格式化了，后期下代码可以方便看 */
+@keyframes animate{
+    0%{
+        /* 不显示 */
+        /* 裁切一条0宽的线 */
+        clip-path: polygon(
+            0% 0%,
+            0% 0%,
+            0% 0%,
+            0% 0%,
+            0% 0%,
+            50% 50%
+        );
+    }
+    25%{
+        /* 到25，显示矩形顶部的四分之一 */
+        clip-path: polygon(
+            /* 左上角 */
+            0% 0%,
+            /* 右上角 变化的其实是这个，后面的暂时跟着一起变化 */
+            100% 0%, /* x轴（横向） 从0到100 */
+            /* 以下三个暂时用不到 */
+            100% 0%,
+            100% 0%,
+            100% 0%,
+            /* 中心点 */
+            50% 50%
+        );
+    }
+    50%{
+        clip-path: polygon(
+            /* 左上角 */
+            0% 0%,
+            /* 右上角 */
+            100% 0%, 
+            /* 右下角 后面的继续跟着一起变化 */
+            100% 100%, /* y轴（纵向） 从0到100 */
+            100% 100%,
+            100% 100%,
+            /* 中心点 */
+            50% 50%
+        );
+    }
+    75%{
+        clip-path: polygon(
+            /* 左上角 */
+            0% 0%,
+            /* 右上角 */
+            100% 0%, 
+            /* 右下角 */
+            100% 100%, 
+            /* 左下角 X轴变化从100到0，后面的需要也跟着变化*/
+            0% 100%,
+            0% 100%,
+            /* 中心点 */
+            50% 50%
+        );
+    }
+    /* 最后一个 */
+    100%{
+        clip-path: polygon(
+            /* 左上角 */
+            0% 0%,
+            /* 右上角 */
+            100% 0%, 
+            /* 右下角 */
+            100% 100%, 
+            /* 左下角 */
+            0% 100%,
+            /* 左上角，形成闭环 调整成Y周10%可以看到世界上就是一个有0宽缺口的一个图形，并不是真正的闭合图形*/
+            0% 0%,
+            /* 中心点 */
+            50% 50%
+        );
+    }
+}
+
+/* 写到最后： */
+/* 这里可以看到动画使用了线性变化，其实不应该使用线性，但是其他的暂时也没有好的办法 */
+/* 我记得有个公式可以让这个变化更顺畅，现在的变化会有卡顿 */
+/* 卡顿会在四个角的位置，因为我们要的是圆形，但是变化却在正方形上 */
+/* 正方形四个角距离比较远，所有体现在圆上就感觉慢 */
+/* 如果你有好的办法可以留言交流 */

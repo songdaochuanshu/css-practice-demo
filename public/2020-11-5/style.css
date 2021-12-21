@@ -1,0 +1,139 @@
+:root {
+    --background-color: #f1f1f1;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #fd79a8;
+    --color3          : #0984e3;
+    --color4          : #00b894;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: var(--background-color);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -200px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : #fff;
+}
+
+.container {
+    position       : absolute;
+    width          : 700px;
+    height         : 300px;
+    display        : flex;
+    justify-content: space-around;
+    align-items    : center;
+}
+
+.bt {
+    position: relative;
+    width   : 200px;
+    height  : 50px;
+
+    font-size: 30px;
+
+    text-transform : uppercase;
+    text-decoration: none;
+    letter-spacing : 5px;
+    color          : #fff;
+
+    z-index: 0;
+}
+
+.bt span {
+    display: block;
+
+    width : 100%;
+    height: 100%;
+
+    /* 居中 */
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+
+    background-size    : 200%;
+    background-position: 0% 0%;
+
+    transition: all 0.1s;
+
+    z-index: 2;
+}
+
+.bt:nth-child(1) span {
+    background-image: linear-gradient(to right, #a18cd1, #fbc2eb, #a18cd1);
+
+}
+
+.bt:nth-child(2) span {
+    background-image: linear-gradient(to right, #80a866, #faefb0, #80a866);
+
+}
+
+.bt:nth-child(3) span {
+    background-image: linear-gradient(to right, #dd9595, #f1efce, #dd9595);
+
+}
+
+.bt span::after {
+    content         : '';
+    position        : absolute;
+    width           : 50%;
+    height          : 100%;
+    left            : 0;
+    z-index         : 10;
+    background-color: #fff;
+    opacity         : .5;
+}
+
+.bt:hover span {
+    background-position: 100% 0%;
+    transform: translateY(-15px);
+}
+
+
+.bt::before {
+    content         : '';
+    position        : absolute;
+    width           : 100%;
+    height          : 10px;
+    bottom          : 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius   : 50%;
+    transform       : scale(0);
+    filter          : blur(5px);
+    transition      : all 0.5s;
+    z-index         : -1;
+    pointer-events  : none;
+}
+
+.bt:hover::before {
+    transform: scale(0.9);
+    bottom   : -5px;
+}

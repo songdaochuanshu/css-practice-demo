@@ -1,0 +1,121 @@
+:root {
+    --background-color: #2c3e50;
+    --color1: #34495e;
+    --color2: #546c83;
+    --color3: #d35400;
+    --color4: #7b8591;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container1 {
+    width: 400px;
+    height: 200px;
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container1 label {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: var(--color2);
+    border-radius: 5px;
+}
+
+.container1 label::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 16px;
+    /* background-color: #FFF; */
+    box-sizing: border-box;
+    border: 2px solid #FFF;
+    border-width: 0 2px 2px 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%) rotate(45deg);
+    opacity: 0;
+    transition: 0.1s ease-in;
+}
+
+.container1 [type=checkbox] {
+    display: none;
+}
+
+.container1 [type=checkbox]:checked+label {
+    background-color: var(--color3);
+}
+
+.container1 [type=checkbox]:checked+label::after {
+    opacity: 1;
+}
+
+/* 效果2 */
+
+.container2 {
+    width: 400px;
+    height: 200px;
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.container2 label {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: var(--color2);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .2s ease-in;
+}
+
+.container2 label::after {
+    content: "";
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    left: 3px;
+    background-color: var(--color4);
+    border-radius: 100%;
+    transition: .2s ease-in;
+}
+
+.container2 [type=checkbox] {
+    display: none;
+}
+
+.container2 [type=checkbox]:checked+label {
+    background-color: var(--color3);
+}
+
+.container2 [type=checkbox]:checked+label::after {
+    left: calc(100% - 3px - 23px);
+    background-color: #FFF;
+}

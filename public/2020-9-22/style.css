@@ -1,0 +1,168 @@
+:root {
+    --background-color: #2c3e50;
+    --border-color: #7591AD;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #1890ff;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: var(--border-color); */
+}
+
+/* icon就是未来要做的的图标，现在先做个框架放在这里 */
+
+.icon {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    /* background-color: var(--color2); */
+}
+
+/* 放射线 */
+
+.shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    /* background-color: var(--color3); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 先做放射的圆环 有一个 边框从小变大再变小消失的效果 */
+
+.shine::after {
+    position: absolute;
+    box-sizing: border-box;
+    content: '';
+    /* 居中，这里用flex做居中好像有点问题 */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* background-color: #F97F51; */
+    animation: ray_border 1s linear infinite;
+}
+
+/* 整体放大，通过width和height，而不是缩放 */
+
+@keyframes ray_border {
+    0% {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--color3);
+        opacity: 0.1;
+    }
+    /* 让最后的动画变慢 */
+    40% {
+        width: 100px;
+        height: 100px;
+        border: 20px solid var(--color3);
+        opacity: 0.1;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        border: 2px solid var(--color3);
+        opacity: 0;
+    }
+}
+
+.shine span {
+    position: absolute;
+    display: block;
+    width: 5px;
+    background-color: var(--color3);
+    /* 形成一种梭子的形状，椭圆，这样放射线
+    看起来更有动感 */
+    border-radius: 100%;
+    /* 开始旋转，向16个方向，每个角度22.5，共计360度 */
+    /* --i这种方式是在太方便了
+        没看懂的可以去看前面的一些案例。
+        变量定义，定义在sytle属性中
+    */
+    /* transform: rotate(calc(22.5deg * var(--i))); */
+    /* both不大常用，具体的可自行查一下 */
+    /* animation: ray 1s ease infinite both; */
+}
+
+/* 奇数、偶数不一致高度，稍后动画也会不一致，有先有后 */
+
+.shine span:nth-child(even) {
+    height: 15px;
+    animation: ray_even 1s ease infinite both;
+}
+
+.shine span:nth-child(odd) {
+    height: 8px;
+    animation: ray_odd 1s ease infinite both;
+}
+
+/* 奇数偶数差异化 */
+
+@keyframes ray_even {
+    /* 动画效果为，先旋转，然后Y轴位移，注意先后顺序 */
+    0% {
+        transform: rotate(calc(22.5deg * var(--i))) translateY(0px);
+    }
+    60% {
+        opacity: 0.8;
+        height: 15px;
+    }
+    100% {
+        transform: rotate(calc(22.5deg * var(--i))) translateY(60px);
+        /* 变透明 */
+        opacity: 0;
+        /* 变小 */
+        height: 5px;
+    }
+}
+
+@keyframes ray_odd {
+    /* 动画效果为，先旋转，然后Y轴位移，注意先后顺序 */
+    0% {
+        transform: rotate(calc(22.5deg * var(--i))) translateY(0px);
+    }
+    60% {
+        opacity: 0.8;
+        height: 8px;
+    }
+    100% {
+        transform: rotate(calc(22.5deg * var(--i))) translateY(65px);
+        opacity: 0;
+        height: 5px;
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=container.classList.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- HTML代码部分 -->
+    <!-- 基本框架 -->
+    <!-- 临时：为了展示效果方便，临时关闭切换功能已经强制active样式 -->
+    <div class="container">
+        <!-- 动画应用部分 -->
+        <div class="card">
+            <!-- card仅作为背景使用 -->
+            <!-- 图片 -->
+            <div class="pic"></div>
+            <h2>steps</h2>
+            <h3>this week</h3>
+            <!-- 这里是柱状图 -->
+            <div class="chart">
+                <!-- 以下为7天的步数柱状图文字 -->
+                <div class="bar"><span>20,000</span></div>
+                <div class="bar"><span>10,000</span></div>
+                <div class="bar"><span>15,000</span></div>
+                <div class="bar"><span>24,000</span></div>
+                <div class="bar"><span>7,000</span></div>
+                <div class="bar"><span>7,000</span></div>
+                <div class="bar"><span>10,000</span></div>
+            </div>
+            <!-- 总步数 -->
+            <h4>14,025</h4>
+
+        </div>
+    </div>
+    <script>
+        // 开始js脚本编写，主要目的是点击界面时切换样式，
+        // 通过样式变化实现动画效果
+        // 找到container元素
+        let container = document.querySelector('.container');
+        // 增加点击监听事件
+        container.addEventListener('click', () => {
+            // 切换样式，增加或删除active样式，实现效果切换
+            container.classList.toggle('active');
+        })
+    </script>
+</body>
+
+</html>

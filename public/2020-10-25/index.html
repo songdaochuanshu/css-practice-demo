@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <div class="grid">
+        </div>
+    </div>
+    <script>
+        // 获取容器元素
+        let grid = document.querySelector('.grid');
+
+        // 循环创建100个
+        for (let index = 1; index < 101; index++) {
+            // 创建item元素
+            let item = document.createElement('div');
+            // 增加样式
+            item.classList.add('item');
+            // 增加变量
+            item.style = '--i:' + index;
+            grid.appendChild(item);
+        }
+    </script>
+</body>
+
+</html>
