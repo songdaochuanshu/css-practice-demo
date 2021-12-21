@@ -1,0 +1,24 @@
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  width: 200px;
+}
+ul li a {
+  color: #6b6e80;
+  text-decoration: none;
+}

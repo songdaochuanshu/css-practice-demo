@@ -1,0 +1,338 @@
+:root {
+    --background-color: #2c3e50;
+    --border-color    : #7591AD;
+    --text-color      : #34495e;
+    --color1          : #EC3E27;
+    --color2          : #fd79a8;
+    --color3          : #0984e3;
+    --color4          : #00b894;
+    --color5          : #fdcb6e;
+    --color6          : #e056fd;
+    --color7          : #F97F51;
+    --color8          : #BDC581;
+}
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width           : 100vw;
+    height          : 100vh;
+    background-color: var(--background-color);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position   : absolute;
+    width      : 80%;
+    text-align : center;
+    top        : 50%;
+    left       : 50%;
+    transform  : translate(-50%, -200px);
+    font-size  : 30px;
+    font-weight: bold;
+    color      : #fff;
+}
+
+/* 组件容器 */
+.container {
+    width : 500px;
+    height: 100px;
+
+    /* background-color: #7591AD; */
+
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+
+}
+
+/* 通用属性 */
+.bt-close {
+    position: relative;
+
+    width : 60px;
+    height: 45px;
+
+    background-color: #BDC581;
+
+    /* 鼠标 */
+    cursor: pointer;
+}
+
+/* 按钮1 */
+
+.bt-close.icon1 {
+    display        : flex;
+    justify-content: space-between;
+    /* 纵向 */
+    flex-direction : column;
+
+    background-color: transparent;
+}
+
+.bt-close.icon1 span {
+    position: relative;
+
+    display: block;
+
+    height: 9px;
+    width : 100%;
+
+    left: 0;
+
+    border-radius: 9px;
+
+    background-color: var(--color1);
+
+    opacity: 1;
+
+    transition: all 0.31s ease-in-out;
+}
+
+/* 打开后的样式 */
+
+.bt-close.icon1.open span:nth-child(1) {
+    transform: translateY(18px) rotate(135deg);
+}
+
+.bt-close.icon1.open span:nth-child(2) {
+    opacity  : 0;
+    transform: translateX(-60px);
+}
+
+.bt-close.icon1.open span:nth-child(3) {
+    transform: translateY(-18px) rotate(-135deg);
+}
+
+
+
+/* 按钮2 复制自按钮1 */
+
+/* 方式1：复制按钮1, */
+/* 方式2：我们重新做一个差不多的 */
+
+/* 两种方式均可 */
+
+.bt-close.icon2 {
+    display        : flex;
+    justify-content: center;
+    /* 纵向 */
+    flex-direction : column;
+
+    background-color: transparent;
+}
+
+.bt-close.icon2 span {
+    position: absolute;
+
+    display: block;
+
+    height: 9px;
+    width : 100%;
+
+    left: 0;
+
+    border-radius: 9px;
+
+    background-color: var(--color2);
+
+    opacity: 1;
+
+    transition: all 0.31s ease-in-out;
+}
+
+
+/* 初始位置 */
+.bt-close.icon2 span:nth-child(1) {
+    transform: translateY(-18px);
+}
+
+.bt-close.icon2 span:nth-child(2) {
+    transform: translateY(0px);
+}
+
+.bt-close.icon2 span:nth-child(3) {
+    transform: translateY(18px);
+}
+
+
+/* 打开后的样式 这里要还原y轴位移*/
+
+.bt-close.icon2.open span:nth-child(1) {
+    transform: translateY(0px) rotate(45deg);
+}
+
+.bt-close.icon2.open span:nth-child(2) {
+    opacity: 0;
+    width  : 0%;
+}
+
+.bt-close.icon2.open span:nth-child(3) {
+    transform: translateY(0px) rotate(-45deg);
+}
+
+/* 按钮3 */
+.bt-close.icon3 {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    /* 纵向 */
+    flex-direction : column;
+
+    background-color: transparent;
+}
+
+.bt-close.icon3 span {
+    position: absolute;
+
+    display: block;
+
+    height: 9px;
+    width : 100%;
+
+    /* left: 0; */
+
+    border-radius: 9px;
+
+    background-color: var(--color3);
+
+    opacity: 1;
+
+    transition: all 0.31s ease-in-out;
+}
+
+/* 这里与按钮2不同直接实用top和bottom实现上下分离 */
+.bt-close.icon3 span:nth-child(1) {
+    top: 0;
+}
+
+.bt-close.icon3 span:nth-child(4) {
+    bottom: 0;
+}
+
+/* open效果 */
+/* 上下两条位移 */
+/* 中间两条旋转 */
+.bt-close.icon3.open span:nth-child(1) {
+    top  : 18px;
+    width: 0;
+}
+
+.bt-close.icon3.open span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.bt-close.icon3.open span:nth-child(3) {
+    transform: rotate(-45deg);
+
+}
+
+.bt-close.icon3.open span:nth-child(4) {
+    bottom: 18px;
+    width : 0;
+}
+
+/* 按钮4 最复杂的一个 */
+/* 用了6个span标签 */
+.bt-close.icon4 {
+    background-color: transparent;
+}
+
+.bt-close.icon4 span {
+    position: absolute;
+    display : block;
+
+    height: 9px;
+    width : 50%;
+
+    background-color: var(--color4);
+
+    opacity: 1;
+
+    left: 0px;
+
+    transform: rotate(0deg);
+
+    transition: all 0.31s ease-in-out;
+}
+
+/* 偶数 */
+.bt-close.icon4 span:nth-child(even) {
+    left               : 50%;
+    /* background-color: red; */
+    border-radius      : 0 9px 9px 0;
+}
+
+/* 奇数 */
+.bt-close.icon4 span:nth-child(odd) {
+    left               : 0pxs;
+    /* background-color: blue; */
+    border-radius      : 9px 0 0 9px;
+}
+
+.bt-close.icon4 span:nth-child(1),
+.bt-close.icon4 span:nth-child(2) {
+    top: 0px;
+}
+
+.bt-close.icon4 span:nth-child(3),
+.bt-close.icon4 span:nth-child(4) {
+    top: 18px;
+}
+
+.bt-close.icon4 span:nth-child(5),
+.bt-close.icon4 span:nth-child(6) {
+    top: 36px;
+}
+
+/* 点击后的open效果 */
+
+.bt-close.icon4.open span:nth-child(1),
+.bt-close.icon4.open span:nth-child(6) {
+    transform: rotate(45deg);
+}
+
+.bt-close.icon4.open span:nth-child(2),
+.bt-close.icon4.open span:nth-child(5) {
+    transform: rotate(-45deg);
+}
+
+.bt-close.icon4.open span:nth-child(1) {
+    left: 5px;
+    top : 7px;
+}
+
+.bt-close.icon4.open span:nth-child(2) {
+    left: calc(50% - 5px);
+    top : 7px;
+}
+
+.bt-close.icon4.open span:nth-child(3) {
+    left   : -50%;
+    opacity: 0;
+}
+
+.bt-close.icon4.open span:nth-child(4) {
+    left   : 100%;
+    opacity: 0;
+}
+
+.bt-close.icon4.open span:nth-child(5) {
+    left: 5px;
+    top : 29px;
+}
+
+.bt-close.icon4.open span:nth-child(6) {
+    left: calc(50% - 5px);
+    top : 29px;
+}

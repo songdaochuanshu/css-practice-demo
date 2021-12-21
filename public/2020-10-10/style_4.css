@@ -1,0 +1,105 @@
+:root {
+    --background-color: #000;
+    --border-color: #7591AD;
+    --text-color: #34495e;
+    --color1: #EC3E27;
+    --color2: #fd79a8;
+    --color3: #0984e3;
+    --color4: #00b894;
+    --color5: #fdcb6e;
+    --color6: #e056fd;
+    --color7: #F97F51;
+    --color8: #BDC581;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif, Arial, 'Microsoft Yahei';
+}
+
+.channel {
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -240px);
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(136, 136, 136);
+}
+
+.container {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    /* background-color: #00b894; */
+}
+
+.container .light {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    /* background-color: #BDC581; */
+    /* 30个light每个旋转12度*变量i，正好360度一个园 */
+    transform: rotate(calc(12deg * var(--i)));
+    /* 
+    背景色变换
+    与核心功能没关系，只是让这个动画更加炫酷而已。
+     */
+    animation: animate_bg 1s linear infinite;
+}
+
+@keyframes animate_bg {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.container .light::before {
+    position: absolute;
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-color: #EC3E27;
+    border-radius: 50%;
+    /* 这里先定义3s的时间，方便后面做延迟，每个延迟0.1，30个圆刚好3秒 */
+    /* 这里变换周期改为1s，就会出现3组动画 */
+    animation: animate 1s linear infinite;
+    animation-delay: calc(0.1s * var(--i));
+    /* 增加投影，这里也会让效果更加炫酷
+    不影响基本逻辑
+    */
+    box-shadow: 0 0 5px #EC3E27, 0 0 35px #EC3E27, 0 0 75px #EC3E27, 0 0 105px #EC3E27, 0 0 155px #EC3E27, 0 0 205px #EC3E27, 0 0 305px #EC3E27;
+}
+
+@keyframes animate {
+    0% {
+        transform: scale(1);
+    }
+    /* 90%,为了让圆提前消失 */
+    /* 没有，则会更紧凑 */
+    /* 90%, */
+    100% {
+        transform: scale(0);
+    }
+}

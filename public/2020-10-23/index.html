@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <!-- 每个字符之后的span不能有间隙或空行 -->
+        <span class="first">H</span><span>E</span><span>L</span><span>L</span><span>O</span><span class="first">W</span><span>O</span><span>R</span><span>L</span><span>D</span>
+    </div>
+
+    <script>
+        // 写个脚本控制鼠标移入效果
+
+        // 找到所有span标签
+        let spans = document.querySelectorAll('span');
+        // console.log(spans);
+
+        // 为所有的标签增加绑定鼠标移入、移除的事件，并处理相关增加或移除样式操作
+        for (const key in spans) {
+            if (spans.hasOwnProperty(key)) {
+                const element = spans[key];
+
+                // key为字符类型，需要转数字。
+                let index = parseInt(key);
+
+                // 增加鼠标移入事件
+                element.addEventListener("mouseover", (e) => {
+                    element.classList.add('flat');
+
+                    // 联动操作，控制前后span同时增加样式
+
+
+                    // 判断奇数、偶数（spans 是从0开始数的）
+                    if (index % 2 == 0) {
+                        // 偶数后一个联动
+                        spans[index + 1].classList.add('flat');
+                    } else {
+                        // 奇数前一个联动
+                        spans[index - 1].classList.add('flat');
+                    }
+
+
+                });
+                // 增加鼠标移出事件
+                element.addEventListener("mouseout", (e) => {
+                    element.classList.remove('flat');
+
+                    // 联动操作，控制前后span同时移除样式
+
+                    // 判断奇数、偶数（spans 是从0开始数的）
+                    if (index % 2 == 0) {
+                        // 偶数后一个联动
+                        spans[index + 1].classList.remove('flat');
+                    } else {
+                        // 奇数前一个联动
+                        spans[index - 1].classList.remove('flat');
+                    }
+                });
+
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>

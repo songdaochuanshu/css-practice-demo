@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    position: relative;
+    padding: 12px 30px;
+    margin: 30px;
+    background-color: #4d385b;
+    color: #FFF;
+    text-decoration: none;
+    letter-spacing: 6px;
+    border-radius: 12px;
+    /* 超边界隐藏 */
+    overflow: hidden;
+}
+
+a:nth-child(1):hover {
+    background-color: #FF6659;
+}
+
+a:nth-child(2):hover {
+    background-color: #b6a9b6;
+}
+
+a::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    /* 默认移除按钮可视区域 */
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    /* 背景图使用linear-gradient方法生成60度的过渡渐变 */
+    /* 原教程使用一个transparent，但实际效果并不明显，所有此处使用两个 */
+    background-image: linear-gradient(60deg, transparent, transparent, #FFF, transparent, transparent);
+    /* 过渡动画 left 属性 0.5秒时长 */
+    transition: left 0.5s;
+}
+
+a:hover::before {
+    left: 100%;
+}

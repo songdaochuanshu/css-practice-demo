@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松岛川树</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="channel">
+        松岛川树
+    </div>
+    <div class="container">
+        <div class="dot" style="--color:#EC3E27"></div>
+    </div>
+    <script>
+        // 效果有了，我们需要的大量复制div.dot元素，所有我们用脚本实现
+        // 获取容器元素
+        let container = document.querySelector('.container');
+        // console.log(container);
+        // 定义颜色列表(8种颜色)
+        let color_list = Array(
+            "#EC3E27",
+            "#FD79A8",
+            "#0984E3",
+            "#00B894",
+            "#FDCB6E",
+            "#E056FD",
+            "#F97F51",
+            "#BDC581"
+        );
+
+        // 我们动态获取可是区域大小，然后根据可视大小计算整个屏幕的闪光点的数量
+        let window_width = document.documentElement.clientWidth;
+        let window_height = document.documentElement.clientHeight;
+        // console.log(window_width);
+        // console.log(window_height);
+
+        // 定义每个闪光点的大小，来源于样式
+        let dot_width = dot_height = 20;
+
+        // 计算横向最大数量（多少列）
+        let col = Math.floor(window_width / dot_width); // 地板除
+        // 计算纵向最大数量（多少行）
+        let row = Math.floor(window_height / dot_height);
+        // 可视大小变换，数量也变化
+        // console.log(col);
+        // console.log(row);
+        // 计算全屏闪光点的总数量
+        let dot_max = col * row;
+        // console.log(dot_max)
+
+        // 循环产生所有闪光点
+        for (let index = 0; index < dot_max; index++) {
+            // 产生一个div
+            let dot = document.createElement('div');
+            // 增加基本样式
+            dot.classList.add('dot');
+            // 随机获取一个颜色，from color list
+            let color = color_list[
+                Math.floor(Math.random() * 7)
+            ];
+            // console.log(color)
+            // 自定义变量
+            dot.style = '--color:' + color;
+            // 附加闪光点到容器
+            container.appendChild(dot);
+            // 完成
+        }
+    </script>
+</body>
+
+</html>
