@@ -4,13 +4,13 @@
  * @Author: 松岛川树
  * @Date: 2021-12-21 12:56:45
  * @LastEditors: 松岛川树
- * @LastEditTime: 2021-12-21 14:33:26
- * @FilePath: \CSS3\src\main.js
+ * @LastEditTime: 2021-12-27 09:43:58
+ * @FilePath: \css-practice-demo\src\main.js
  */
 import './style.css'
 
 let startDate = new Date(2020, 7, 12)
-let endDate = new Date(2020, 10, 20)
+let endDate = new Date(2020, 10, 19)
 let dateArr = [];
 let date = startDate;
 while (date <= endDate) {
@@ -24,6 +24,8 @@ while (date <= endDate) {
   dateArr[dateArr.length - 1] = dateArr[dateArr.length - 1].replace(/\//g, '-')
 }
 dateArr.push('bilibili')
+dateArr.push('2021-12-27')
+
 
 let ul = document.querySelector('ul') || document.createElement('ul')
 let li = ''
